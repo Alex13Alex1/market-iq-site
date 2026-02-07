@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Share Card Generator</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="styles.css">
+
+<style>
+body{font-family:Inter;background:#05070F;color:white;}
+canvas{border-radius:16px;}
+</style>
+</head>
+
+<body class="min-h-screen">
+
+<header class="border-b border-white/10 p-4 flex justify-between">
+<div class="font-semibold">Share Card Generator</div>
+<a href="app.html" class="text-white/60 text-sm">Back to App</a>
+</header>
+
+<section class="max-w-5xl mx-auto p-6">
+
+<div class="grid md:grid-cols-2 gap-6">
+
+<div class="glass p-6 rounded-2xl">
+
+<div class="text-sm font-semibold">Profile Data</div>
+
+<div class="mt-4 space-y-3">
+
+<input id="handle" class="input" placeholder="@handle"/>
+
+<input id="accuracy" class="input" placeholder="Accuracy %"/>
+
+<input id="iq" class="input" placeholder="Market IQ"/>
+
+<input id="rank" class="input" placeholder="Season Rank"/>
+
+</div>
+
+<button id="generate"
+class="btn btn-primary mt-6 w-full">
+Generate Card
+</button>
+
+<button id="download"
+class="btn btn-ghost mt-3 w-full">
+Download PNG
+</button>
+
+</div>
+
+<div class="glass p-6 rounded-2xl flex justify-center items-center">
+
+<canvas id="card" width="500" height="280"></canvas>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+const canvas = document.getElementById("card");
+const ctx = canvas.getContext("2d");
+
+function drawCard(){
+
+const handle = document.getElementById("handle").value || "@user";
+const acc = document.getElementById("accuracy").value || "84.2";
+const iq = document.getElementById("iq").value || "742";
+const rank = document.getElementById("rank").value || "#18";
+
+ctx.fillStyle = "#0A0F1F";
+ctx.fillRect(0,0,500,280);
+
+ctx.fillStyle = "white";
+ctx.font = "bold 28px Inter";
+ctx.fillText("Market IQ", 30, 50);
+
+ctx.font = "20px Inter";
+ctx.fillText(handle, 30, 100);
+
+ctx.font = "16px Inter";
+ctx.fillText("Accuracy: " + acc + "%", 30, 150);
+ctx.fillText("Market IQ: " + iq, 30, 180);
+ctx.fillText("Rank: " + rank, 30, 210);
+
+}
+
+document.getElementById("generate").onclick = drawCard;
+
+document.getElementById("download").onclick = () => {
+const link = document.createElement("a");
+link.download = "marketiq-card.png";
+link.href = canvas.toDataURL();
+link.click();
+}
+
+drawCard();
+
+</script>
+
+</body>
+</html>
