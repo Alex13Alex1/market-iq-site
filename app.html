@@ -4,60 +4,51 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Market IQ App</title>
+<title>Market IQ — App</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="styles.css">
 
 <style>
 body{
-font-family: Inter;
-background:#070A12;
+font-family:Inter;
+background:
+radial-gradient(1000px 600px at 20% 0%, rgba(99,102,241,0.15), transparent 60%),
+radial-gradient(800px 500px at 90% 10%, rgba(34,211,238,0.12), transparent 60%),
+#05070F;
 color:white;
 }
-.card{
-background: rgba(255,255,255,0.03);
-border:1px solid rgba(255,255,255,0.08);
-border-radius:16px;
-}
-.sidebar{
-background:#05070C;
-border-right:1px solid rgba(255,255,255,0.08);
-}
 </style>
+
 </head>
 
-<body class="flex">
+<body>
 
-<!-- SIDEBAR -->
-<div class="sidebar w-64 min-h-screen p-6 hidden md:block">
+<script>
+if(!localStorage.getItem("miq_wallet")){
+location.href="index.html";
+}
+</script>
 
-<div class="text-xl font-semibold mb-10">Market IQ</div>
+<div class="max-w-7xl mx-auto p-6">
 
-<nav class="space-y-5 text-white/60">
+<div class="glass rounded-3xl shadow-big overflow-hidden">
 
-<a href="app.html" class="block hover:text-white">Dashboard</a>
-<a href="game.html" class="block hover:text-white">Game</a>
-<div class="hover:text-white cursor-pointer">Marketplace</div>
-<div class="hover:text-white cursor-pointer">Creators</div>
+<!-- TOP BAR -->
+<div class="flex justify-between items-center p-5 border-b border-white/10">
 
-</nav>
-
+<div class="flex items-center gap-4">
+<a href="index.html" class="text-white/60 text-sm">← Site</a>
+<div class="font-semibold">Market IQ Platform</div>
 </div>
 
-<!-- MAIN -->
-<div class="flex-1 p-8">
+<div class="flex items-center gap-4">
 
-<div class="flex justify-between items-center">
-
-<h1 class="text-3xl font-semibold">Dashboard</h1>
-
-<div class="flex gap-4 items-center">
-
-<div id="walletLabel" class="text-white/60 text-sm"></div>
+<div id="wallet" class="kbd"></div>
 
 <button id="logout"
-class="border border-white/20 px-4 py-2 rounded-lg text-sm">
+class="btn btn-ghost !px-4 !py-2">
 Disconnect
 </button>
 
@@ -65,55 +56,187 @@ Disconnect
 
 </div>
 
-<div class="grid md:grid-cols-3 gap-6 mt-10">
+<!-- BODY -->
+<div class="grid lg:grid-cols-12">
 
-<div class="card p-6">
+<!-- SIDEBAR -->
+<div class="lg:col-span-3 border-r border-white/10 p-4 space-y-2">
+
+<button class="nav btn btn-ghost w-full text-left" data-view="dash">
+Dashboard
+</button>
+
+<a href="game.html" class="btn btn-ghost w-full text-left">
+Game
+</a>
+
+<button class="nav btn btn-ghost w-full text-left" data-view="market">
+Marketplace
+</button>
+
+<button class="nav btn btn-ghost w-full text-left" data-view="creators">
+Creators
+</button>
+
+<a href="leaderboard.html" class="btn btn-ghost w-full text-left">
+Leaderboard
+</a>
+
+<a href="share.html" class="btn btn-ghost w-full text-left">
+Share Card
+</a>
+
+<button class="nav btn btn-ghost w-full text-left" data-view="settings">
+Settings
+</button>
+
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="lg:col-span-9 p-6">
+
+<!-- DASHBOARD -->
+<div id="view-dash" class="view">
+
+<h1 class="text-3xl font-semibold">Dashboard</h1>
+
+<div class="grid md:grid-cols-3 gap-4 mt-6">
+
+<div class="glass p-5 rounded-2xl">
 <div class="text-white/50 text-sm">Market IQ</div>
-<div class="text-3xl font-semibold mt-2">742</div>
+<div id="iq" class="text-3xl font-semibold mt-1">742</div>
 </div>
 
-<div class="card p-6">
-<div class="text-white/50 text-sm">League</div>
-<div class="text-3xl font-semibold mt-2">Gold</div>
-</div>
-
-<div class="card p-6">
+<div class="glass p-5 rounded-2xl">
 <div class="text-white/50 text-sm">Points</div>
-<div class="text-3xl font-semibold mt-2">1240</div>
+<div id="points" class="text-3xl font-semibold mt-1">1240</div>
+</div>
+
+<div class="glass p-5 rounded-2xl">
+<div class="text-white/50 text-sm">Streak</div>
+<div id="streak" class="text-3xl font-semibold mt-1">11</div>
 </div>
 
 </div>
 
-<div class="card p-8 mt-10">
+<div class="glass p-6 rounded-2xl mt-6">
 
-<div class="text-xl font-semibold">Daily Game</div>
+<div class="font-semibold">Latest Game Result</div>
 
-<p class="text-white/60 mt-2">
-Play prediction challenge and earn points.
-</p>
+<div class="text-sm text-white/60 mt-3 space-y-1">
+
+<div>Choice: <span id="lastChoice">—</span></div>
+<div>Outcome: <span id="lastOutcome">—</span></div>
+<div>Points Change: <span id="lastDelta">—</span></div>
+
+</div>
 
 <a href="game.html"
-class="inline-block mt-6 bg-white text-black px-6 py-3 rounded-xl font-semibold">
-Play Game
+class="btn btn-primary mt-5">
+Play Today
 </a>
 
 </div>
 
 </div>
 
+<!-- MARKET -->
+<div id="view-market" class="view hidden">
+
+<h1 class="text-3xl font-semibold">Marketplace</h1>
+
+<div class="grid md:grid-cols-3 gap-4 mt-6">
+
+<div class="glass p-5 rounded-2xl">
+<div class="font-semibold">Crowd Sentiment</div>
+<div class="text-white/60 text-sm mt-2">Market crowd positioning</div>
+</div>
+
+<div class="glass p-5 rounded-2xl">
+<div class="font-semibold">Top Traders Data</div>
+<div class="text-white/60 text-sm mt-2">High accuracy clusters</div>
+</div>
+
+<div class="glass p-5 rounded-2xl">
+<div class="font-semibold">Volatility Signals</div>
+<div class="text-white/60 text-sm mt-2">Regime detection</div>
+</div>
+
+</div>
+
+</div>
+
+<!-- CREATORS -->
+<div id="view-creators" class="view hidden">
+
+<h1 class="text-3xl font-semibold">Creators</h1>
+
+<div class="glass p-6 rounded-2xl mt-6">
+
+<div class="font-semibold">Creator Tools</div>
+
+<p class="text-white/60 mt-2">
+Generate share cards and build public reputation.
+</p>
+
+<a href="share.html"
+class="btn btn-primary mt-4">
+Open Share Generator
+</a>
+
+</div>
+
+</div>
+
+<!-- SETTINGS -->
+<div id="view-settings" class="view hidden">
+
+<h1 class="text-3xl font-semibold">Settings</h1>
+
+<button id="reset"
+class="btn btn-ghost mt-6">
+Reset Demo State
+</button>
+
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+
 <script>
 
-let wallet = localStorage.getItem("wallet");
-
-if(!wallet){
-window.location.href="index.html";
-}
-
-document.getElementById("walletLabel").innerText = wallet;
+const wallet = localStorage.getItem("miq_wallet");
+document.getElementById("wallet").innerText =
+wallet ? wallet.slice(0,10)+"…" : "—";
 
 document.getElementById("logout").onclick = ()=>{
-localStorage.removeItem("wallet");
-window.location.href="index.html";
+localStorage.removeItem("miq_wallet");
+location.href="index.html";
+};
+
+document.querySelectorAll(".nav").forEach(btn=>{
+btn.onclick=()=>{
+document.querySelectorAll(".view").forEach(v=>v.classList.add("hidden"));
+document.getElementById("view-"+btn.dataset.view).classList.remove("hidden");
+};
+});
+
+document.getElementById("reset").onclick = ()=>{
+localStorage.clear();
+location.href="index.html";
+};
+
+const last = localStorage.getItem("miq_last_from_game");
+
+if(last){
+const r = JSON.parse(last);
+document.getElementById("lastChoice").innerText = r.choice;
+document.getElementById("lastOutcome").innerText = r.outcome;
+document.getElementById("lastDelta").innerText =
+(r.pointsDelta>=0?"+":"")+r.pointsDelta;
 }
 
 </script>
