@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Market IQ</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
@@ -22,17 +22,17 @@ color:white;
 <header class="border-b border-white/10">
 <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
-<div class="font-semibold text-lg">
-Market IQ
-</div>
+<div class="font-semibold text-lg">Market IQ</div>
 
-<div class="flex gap-3">
-<a href="app.html" class="text-white/70 text-sm">App</a>
+<div class="flex gap-4 items-center">
+
+<a href="app.html" class="text-white/60 text-sm">App</a>
 
 <button id="walletBtn"
-class="bg-white text-black px-4 py-2 rounded-lg text-sm font-semibold">
+class="bg-white text-black px-5 py-2 rounded-lg font-semibold text-sm">
 Connect Wallet
 </button>
+
 </div>
 
 </div>
@@ -40,77 +40,49 @@ Connect Wallet
 
 <section class="max-w-6xl mx-auto px-6 py-20">
 
-<h1 class="text-5xl font-semibold leading-tight">
-Predict. Prove.  
-<span class="text-white/60">Unlock Intelligence.</span>
+<h1 class="text-5xl font-semibold">
+Predict. Prove. Unlock Intelligence.
 </h1>
 
 <p class="mt-6 text-white/60 max-w-xl text-lg">
-Market IQ is a reputation-based market prediction platform.  
-Build accuracy. Earn trust. Unlock data intelligence.
+Build measurable market accuracy.  
+Earn reputation. Unlock data intelligence.
 </p>
 
-<div class="mt-10 flex gap-4">
+<div class="mt-10 flex gap-5">
 
-<a href="app.html"
+<button id="openApp"
 class="bg-white text-black px-8 py-4 rounded-xl font-semibold text-lg">
 Open App
-</a>
+</button>
 
 <button id="supportBtn"
 class="border border-white/20 px-8 py-4 rounded-xl text-lg">
-Support (Crypto Coming Soon)
+Support (Coming Soon)
 </button>
 
 </div>
 
 </section>
 
-<section class="max-w-6xl mx-auto px-6 py-16 border-t border-white/10">
-
-<h2 class="text-3xl font-semibold">How It Works</h2>
-
-<div class="grid md:grid-cols-3 gap-8 mt-10">
-
-<div class="border border-white/10 p-8 rounded-xl">
-<div class="font-semibold text-lg">Daily Prediction</div>
-<div class="text-white/60 mt-3">
-One market decision per day.
-</div>
-</div>
-
-<div class="border border-white/10 p-8 rounded-xl">
-<div class="font-semibold text-lg">Accuracy Score</div>
-<div class="text-white/60 mt-3">
-Closer prediction = higher score.
-</div>
-</div>
-
-<div class="border border-white/10 p-8 rounded-xl">
-<div class="font-semibold text-lg">Unlock Data</div>
-<div class="text-white/60 mt-3">
-Points unlock analytics and tools.
-</div>
-</div>
-
-</div>
-
-</section>
-
-<footer class="border-t border-white/10 mt-20">
-<div class="max-w-6xl mx-auto px-6 py-10 text-sm text-white/40">
-Market IQ • Utility Points • No Financial Advice
-</div>
-</footer>
-
 <script>
-document.getElementById("walletBtn").onclick=()=>{
-alert("Wallet onboarding is currently private beta.");
+
+// Fake wallet connect
+document.getElementById("walletBtn").onclick = () => {
+
+let fakeAddress = "0x" + Math.random().toString(16).slice(2,10).toUpperCase();
+
+localStorage.setItem("wallet", fakeAddress);
+
+alert("Wallet Connected: " + fakeAddress);
+
 }
 
-document.getElementById("supportBtn").onclick=()=>{
-alert("Crypto support will open after wallet onboarding.");
+// Open App
+document.getElementById("openApp").onclick = () => {
+window.location.href = "app.html";
 }
+
 </script>
 
 </body>
