@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Leaderboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="styles.css">
+
+<style>
+body{font-family:Inter;background:#05070F;color:white;}
+</style>
+</head>
+
+<body>
+
+<header class="border-b border-white/10 p-4 flex justify-between">
+<div class="font-semibold">Leaderboard</div>
+<a href="app.html" class="text-white/60 text-sm">Back to App</a>
+</header>
+
+<section class="max-w-6xl mx-auto p-6">
+
+<div class="flex justify-between items-center">
+
+<div class="text-2xl font-semibold">Season Leaderboard</div>
+
+<select id="seasonSelect" class="input w-40">
+<option>Season 1</option>
+<option>Season 2 (Soon)</option>
+</select>
+
+</div>
+
+<div class="mt-8 glass rounded-2xl overflow-hidden">
+
+<table class="w-full text-sm">
+
+<thead class="bg-white/5 text-white/60">
+<tr>
+<th class="p-3 text-left">Rank</th>
+<th class="p-3 text-left">User</th>
+<th class="p-3 text-left">Accuracy</th>
+<th class="p-3 text-left">Market IQ</th>
+</tr>
+</thead>
+
+<tbody id="board">
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<script>
+
+const data = [
+{rank:1,user:"quant.one",acc:"91.2%",iq:890},
+{rank:2,user:"crowd.edge",acc:"89.4%",iq:870},
+{rank:3,user:"alpha.node",acc:"88.7%",iq:860},
+{rank:18,user:"you",acc:"84.2%",iq:742},
+];
+
+const board = document.getElementById("board");
+
+function render(){
+board.innerHTML="";
+data.forEach(r=>{
+board.innerHTML += `
+<tr class="border-t border-white/10">
+<td class="p-3">${r.rank}</td>
+<td class="p-3">${r.user}</td>
+<td class="p-3">${r.acc}</td>
+<td class="p-3">${r.iq}</td>
+</tr>`;
+});
+}
+
+render();
+
+</script>
+
+</body>
+</html>
