@@ -1,462 +1,200 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Market IQ</title>
-  <meta name="description" content="Market IQ — a reputation-driven prediction network. Prove accuracy. Unlock intelligence." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Market IQ</title><style>
+:root{
+  --bg:#050814;
+  --card:#0b1224;
+  --accent:#5ddcff;
+  --accent2:#ffd166;
+  --text:#e6f0ff;
+  --muted:#8aa0c6;
+  --navH:70px;
+  --safeB:env(safe-area-inset-bottom);
+}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{
+  margin:0;
+  background:radial-gradient(circle at 20% 20%,#0b1a35,var(--bg));
+  font-family:-apple-system,BlinkMacSystemFont,Inter,Segoe UI,Roboto,sans-serif;
+  color:var(--text);
+}
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="styles.css">
-  <style>:root{color-scheme:dark} body{font-family:Inter,system-ui}</style>
-</head>
+.screen{
+  padding:16px;
+  padding-bottom:calc(var(--navH) + var(--safeB) + 60px);
+  max-width:480px;
+  margin:auto;
+}
 
-<body>
-  <!-- Top nav -->
-  <header class="sticky top-0 z-40 border-b border-white/10 bg-black/20 backdrop-blur-xl">
-    <div class="max-w-7xl mx-auto px-5 sm:px-6">
-      <div class="h-16 flex items-center justify-between">
-        <a href="./" class="flex items-center gap-3">
-          <div class="h-9 w-9 rounded-xl glass grid place-items-center shadow-soft">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2L20 6.5V17.5L12 22L4 17.5V6.5L12 2Z" stroke="rgba(255,255,255,0.92)" stroke-width="1.4"/>
-              <path d="M12 7V12L16 14" stroke="rgba(34,211,238,0.95)" stroke-width="1.6" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="leading-tight">
-            <div class="text-sm font-semibold tracking-tight">Market IQ</div>
-            <div class="text-[11px] text-white/55 -mt-0.5">Reputation-driven prediction network</div>
-          </div>
-        </a>
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
 
-        <nav class="hidden md:flex items-center gap-6 text-sm">
-          <a class="link" href="#how">How it works</a>
-          <a class="link" href="#utility">Utility</a>
-          <a class="link" href="#support">Support</a>
-          <a class="link" href="#faq">FAQ</a>
-        </nav>
+.title{
+  font-size:14px;
+  letter-spacing:2px;
+  color:var(--accent);
+}
 
-        <div class="flex items-center gap-2">
-          <a href="app.html" class="hidden sm:inline-flex btn btn-ghost">
-            Open App
-          </a>
-          <button id="btnConnect" class="btn btn-primary">
-            Connect Wallet
-          </button>
-        </div>
-      </div>
-    </div>
-  </header>
+.button{
+  background:linear-gradient(135deg,#5ddcff,#3ab0ff);
+  border:none;
+  color:#001018;
+  padding:10px 16px;
+  border-radius:14px;
+  font-weight:600;
+}
 
-  <!-- Hero -->
-  <main>
-    <section class="max-w-7xl mx-auto px-5 sm:px-6 pt-14 sm:pt-20 pb-10">
-      <div class="grid lg:grid-cols-12 gap-10 items-start">
-        <div class="lg:col-span-7">
-          <div class="inline-flex items-center gap-2 pill">
-            <span class="inline-block h-2 w-2 rounded-full bg-emerald-400/90"></span>
-            Private beta • wallet onboarding (demo)
-          </div>
+.card{
+  background:linear-gradient(180deg,#0b1428,#09101f);
+  border-radius:22px;
+  padding:18px;
+  margin-bottom:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
 
-          <h1 class="mt-6 text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.05]">
-            Prove accuracy.
-            <span class="block text-white/65">Unlock intelligence.</span>
-          </h1>
+.statRow{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
 
-          <p class="mt-5 text-base sm:text-lg text-white/65 max-w-xl leading-relaxed">
-            Market IQ turns predictions into measurable reputation.
-            Play the daily market game, build a track record, and unlock data layers and creator tools.
-          </p>
+.stat{
+  background:rgba(255,255,255,0.04);
+  padding:10px 14px;
+  border-radius:14px;
+  font-size:14px;
+}
 
-          <div class="mt-8 flex flex-col sm:flex-row gap-3">
-            <a href="app.html" class="btn btn-primary w-full sm:w-auto text-center">
-              Enter Platform
-            </a>
-            <a href="game.html" class="btn btn-ghost w-full sm:w-auto text-center">
-              Play today’s game
-            </a>
-          </div>
+.progress{
+  height:8px;
+  background:#0f1a33;
+  border-radius:10px;
+  overflow:hidden;
+  margin:14px 0;
+}
 
-          <div class="mt-9 grid sm:grid-cols-3 gap-3">
-            <div class="glass rounded-2xl p-4 shadow-soft">
-              <div class="text-xs text-white/55">Game</div>
-              <div class="mt-1 font-semibold">1 prediction / day</div>
-              <div class="mt-2 text-sm text-white/65">Simple interaction. Skill-based scoring.</div>
-            </div>
-            <div class="glass rounded-2xl p-4 shadow-soft">
-              <div class="text-xs text-white/55">Reputation</div>
-              <div class="mt-1 font-semibold">Market IQ score</div>
-              <div class="mt-2 text-sm text-white/65">Accuracy, streak, league rank.</div>
-            </div>
-            <div class="glass rounded-2xl p-4 shadow-soft">
-              <div class="text-xs text-white/55">Utility</div>
-              <div class="mt-1 font-semibold">Access & discounts</div>
-              <div class="mt-2 text-sm text-white/65">Points unlock insights and tools.</div>
-            </div>
-          </div>
-        </div>
+.progressInner{
+  height:100%;
+  background:linear-gradient(90deg,#5ddcff,#6effb8);
+  width:65%;
+  transition:0.6s;
+}
 
-        <!-- Right “device” panel -->
-        <div class="lg:col-span-5">
-          <div class="glass rounded-3xl shadow-big overflow-hidden">
-            <div class="p-5 border-b border-white/10 flex items-center justify-between">
-              <div>
-                <div class="text-sm font-semibold">Today</div>
-                <div class="text-xs text-white/55 mt-0.5">Daily game • Crowd vs You</div>
-              </div>
-              <div class="pill">BTC • Demo</div>
-            </div>
+.choiceRow{
+  display:flex;
+  gap:12px;
+}
 
-            <div class="p-5">
-              <div class="text-xs text-white/55">Question</div>
-              <div class="mt-2 text-lg font-semibold leading-snug">
-                Will BTC close above today’s open?
-              </div>
+.choice{
+  flex:1;
+  padding:18px;
+  border-radius:18px;
+  font-weight:700;
+  text-align:center;
+  font-size:20px;
+}
 
-              <div class="mt-5 grid grid-cols-2 gap-3">
-                <div class="glass2 rounded-2xl p-4">
-                  <div class="text-xs text-white/55">Crowd</div>
-                  <div class="mt-1 text-2xl font-semibold">58%</div>
-                  <div class="mt-1 text-xs text-white/55">UP</div>
-                </div>
-                <div class="glass2 rounded-2xl p-4">
-                  <div class="text-xs text-white/55">Potential edge</div>
-                  <div class="mt-1 text-2xl font-semibold">+12</div>
-                  <div class="mt-1 text-xs text-white/55">IQ points</div>
-                </div>
-              </div>
+.up{background:linear-gradient(135deg,#37ffb3,#3ad6ff); color:#002020}
+.down{background:linear-gradient(135deg,#ff6b7a,#ff9a6b); color:#2b0000}
 
-              <div class="mt-5 grid grid-cols-2 gap-3">
-                <a href="game.html" class="btn btn-primary text-center">Play</a>
-                <a href="app.html" class="btn btn-ghost text-center">View dashboard</a>
-              </div>
+.bottomNav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:var(--navH);
+  padding-bottom:var(--safeB);
+  background:rgba(5,10,20,0.9);
+  backdrop-filter:blur(20px);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
 
-              <div class="mt-4 text-xs text-white/55">
-                Wallet onboarding is demo-only on this build.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+.navItem{
+  font-size:12px;
+  color:var(--muted);
+  text-align:center;
+}
 
-    <!-- How -->
-    <section id="how" class="max-w-7xl mx-auto px-5 sm:px-6 py-12">
-      <div class="flex items-end justify-between gap-6">
-        <div>
-          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">How it works</h2>
-          <p class="mt-2 text-white/65 max-w-2xl">
-            A simple loop designed for clarity: game → scoring → reputation → utility.
-          </p>
-        </div>
-        <div class="hidden sm:block kbd">Game → Reputation → Utility</div>
-      </div>
+.navItem.active{color:var(--accent)}
 
-      <div class="mt-8 grid lg:grid-cols-4 gap-4">
-        <div class="glass rounded-2xl p-5 shadow-soft">
-          <div class="text-xs text-white/55">Step 01</div>
-          <div class="mt-2 font-semibold">Make a call</div>
-          <div class="mt-2 text-sm text-white/65">UP / DOWN with optional confidence.</div>
-        </div>
-        <div class="glass rounded-2xl p-5 shadow-soft">
-          <div class="text-xs text-white/55">Step 02</div>
-          <div class="mt-2 font-semibold">Accuracy scoring</div>
-          <div class="mt-2 text-sm text-white/65">Closer to outcome = more points.</div>
-        </div>
-        <div class="glass rounded-2xl p-5 shadow-soft">
-          <div class="text-xs text-white/55">Step 03</div>
-          <div class="mt-2 font-semibold">Build reputation</div>
-          <div class="mt-2 text-sm text-white/65">Track record, leagues, shareable proof.</div>
-        </div>
-        <div class="glass rounded-2xl p-5 shadow-soft">
-          <div class="text-xs text-white/55">Step 04</div>
-          <div class="mt-2 font-semibold">Unlock utility</div>
-          <div class="mt-2 text-sm text-white/65">Data access, discounts, creator tools.</div>
-        </div>
-      </div>
-    </section>
+.toast{
+  position:fixed;
+  bottom:100px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#0b162c;
+  padding:14px 18px;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  opacity:0;
+  transition:0.4s;
+}
 
-    <!-- Utility -->
-    <section id="utility" class="max-w-7xl mx-auto px-5 sm:px-6 py-12">
-      <div class="grid lg:grid-cols-12 gap-10 items-start">
-        <div class="lg:col-span-5">
-          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Utility (not “earnings”)</h2>
-          <p class="mt-3 text-white/65 leading-relaxed">
-            Points are not money. Points unlock access and discounts to intelligence layers.
-            This keeps the system sustainable and clear.
-          </p>
+.toast.show{opacity:1}
 
-          <div class="mt-6 glass rounded-2xl p-5 shadow-soft">
-            <div class="text-sm font-semibold">Pay-with-points cap</div>
-            <p class="mt-2 text-sm text-white/65">
-              In the future marketplace, points can cover only a portion of a data pack (cap by league).
-              The remainder is paid in USDT/USDC.
-            </p>
-          </div>
-        </div>
-
-        <div class="lg:col-span-7">
-          <div class="glass rounded-3xl shadow-soft overflow-hidden">
-            <div class="p-5 border-b border-white/10 flex items-center justify-between">
-              <div>
-                <div class="text-sm font-semibold">League perks (preview)</div>
-                <div class="text-xs text-white/55 mt-0.5">Caps and access tiers</div>
-              </div>
-              <div class="pill">Beta model</div>
-            </div>
-            <div class="p-5 overflow-x-auto">
-              <table class="w-full text-sm">
-                <thead class="text-white/55">
-                  <tr class="border-b border-white/10">
-                    <th class="text-left py-3 pr-4 font-medium">League</th>
-                    <th class="text-left py-3 pr-4 font-medium">Points cap</th>
-                    <th class="text-left py-3 pr-4 font-medium">Unlocks</th>
-                  </tr>
-                </thead>
-                <tbody class="text-white/85">
-                  <tr class="border-b border-white/5">
-                    <td class="py-3 pr-4 font-semibold">Bronze</td>
-                    <td class="py-3 pr-4">5%</td>
-                    <td class="py-3 pr-4 text-white/70">Basic profile</td>
-                  </tr>
-                  <tr class="border-b border-white/5">
-                    <td class="py-3 pr-4 font-semibold">Silver</td>
-                    <td class="py-3 pr-4">10%</td>
-                    <td class="py-3 pr-4 text-white/70">Crowd insights (lite)</td>
-                  </tr>
-                  <tr class="border-b border-white/5">
-                    <td class="py-3 pr-4 font-semibold">Gold</td>
-                    <td class="py-3 pr-4">20%</td>
-                    <td class="py-3 pr-4 text-white/70">Creator cards + stats</td>
-                  </tr>
-                  <tr>
-                    <td class="py-3 pr-4 font-semibold">Oracle</td>
-                    <td class="py-3 pr-4">30%</td>
-                    <td class="py-3 pr-4 text-white/70">Creator hub + premium packs</td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <p class="mt-4 text-xs text-white/55">
-                Preview only. Final caps and tiers are defined in product rules.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Support -->
-    <section id="support" class="max-w-7xl mx-auto px-5 sm:px-6 py-12">
-      <div class="glass rounded-3xl shadow-soft overflow-hidden">
-        <div class="p-6 border-b border-white/10 flex items-center justify-between">
-          <div>
-            <div class="text-sm font-semibold">Support (crypto)</div>
-            <div class="text-xs text-white/55 mt-0.5">Contribution flow is demo-only on this build</div>
-          </div>
-          <div class="pill">USDT / USDC</div>
-        </div>
-
-        <div class="p-6 grid md:grid-cols-12 gap-6">
-          <div class="md:col-span-7">
-            <p class="text-white/65 leading-relaxed">
-              This portal supports the buildout of infrastructure, reliability and tooling.
-              No promises, no guaranteed returns. Utility and access only.
-            </p>
-
-            <div class="mt-5 grid sm:grid-cols-2 gap-3">
-              <div>
-                <div class="text-xs text-white/55">Asset</div>
-                <select class="input mt-2">
-                  <option>USDT</option>
-                  <option>USDC</option>
-                </select>
-              </div>
-              <div>
-                <div class="text-xs text-white/55">Network</div>
-                <select class="input mt-2">
-                  <option>TRC-20</option>
-                  <option>ERC-20</option>
-                  <option>BEP-20</option>
-                </select>
-              </div>
-              <div class="sm:col-span-2">
-                <div class="text-xs text-white/55">Amount</div>
-                <input class="input mt-2" value="100" />
-              </div>
-            </div>
-
-            <div class="mt-5 flex flex-col sm:flex-row gap-3">
-              <button id="btnSupport" class="btn btn-primary w-full sm:w-auto">Continue</button>
-              <button id="btnLearn" class="btn btn-ghost w-full sm:w-auto">Learn more</button>
-            </div>
-
-            <div class="mt-3 text-xs text-white/55">
-              By continuing you confirm: this is a support contribution, not an investment contract.
-            </div>
-          </div>
-
-          <div class="md:col-span-5">
-            <div class="glass2 rounded-2xl p-5">
-              <div class="text-sm font-semibold">What you get (preview)</div>
-              <ul class="mt-3 space-y-2 text-sm text-white/70">
-                <li>• Supporter badge</li>
-                <li>• Early access to marketplace</li>
-                <li>• Priority creator tooling invite</li>
-                <li>• Utility points boost (non-monetary)</li>
-              </ul>
-              <div class="mt-4 text-xs text-white/55">
-                Exact perks may change during beta.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="max-w-7xl mx-auto px-5 sm:px-6 py-12 pb-16">
-      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">FAQ</h2>
-
-      <div class="mt-6 grid lg:grid-cols-2 gap-4">
-        <details class="glass rounded-2xl p-5">
-          <summary class="cursor-pointer font-semibold">Are points a token or money?</summary>
-          <p class="mt-2 text-sm text-white/65">No. Points are utility: access and discounts, not money and not investment returns.</p>
-        </details>
-
-        <details class="glass rounded-2xl p-5">
-          <summary class="cursor-pointer font-semibold">Is this financial advice?</summary>
-          <p class="mt-2 text-sm text-white/65">No. Market IQ provides information tools and reputation scoring only.</p>
-        </details>
-
-        <details class="glass rounded-2xl p-5">
-          <summary class="cursor-pointer font-semibold">Why wallet onboarding?</summary>
-          <p class="mt-2 text-sm text-white/65">Wallet is used as an identity layer. On this build it’s a demo flow only.</p>
-        </details>
-
-        <details class="glass rounded-2xl p-5">
-          <summary class="cursor-pointer font-semibold">Where is the game?</summary>
-          <p class="mt-2 text-sm text-white/65">Use “Play today’s game” on the hero or open the App and navigate to Game.</p>
-        </details>
-      </div>
-
-      <footer class="mt-12 hr pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-sm text-white/55">
-        <div>© <span id="year"></span> Market IQ</div>
-        <div class="flex gap-4">
-          <a class="link" href="app.html">App</a>
-          <a class="link" href="game.html">Game</a>
-          <a class="link" href="#support">Support</a>
-        </div>
-      </footer>
-    </section>
-  </main>
-
-  <!-- Wallet modal -->
-  <div id="overlay" class="fixed inset-0 z-50 hidden">
-    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-
-    <div class="relative max-w-lg mx-auto mt-16 w-[92%] glass rounded-3xl shadow-big overflow-hidden">
-      <div class="p-5 border-b border-white/10 flex items-center justify-between">
-        <div>
-          <div class="text-sm font-semibold">Connect Wallet</div>
-          <div class="text-xs text-white/55 mt-0.5">Private beta onboarding (demo)</div>
-        </div>
-        <button id="btnClose" class="btn btn-ghost !px-3 !py-2">Close</button>
-      </div>
-
-      <div class="p-5">
-        <div class="glass2 rounded-2xl p-4">
-          <div class="text-sm font-semibold">Status</div>
-          <p class="mt-2 text-sm text-white/65">
-            This is a demo connect flow. It generates a placeholder address for UI testing.
-          </p>
-        </div>
-
-        <div class="mt-4 grid gap-2">
-          <button class="walletOpt btn btn-ghost text-left" data-wallet="MetaMask">
-            <div class="font-semibold">MetaMask</div>
-            <div class="text-xs text-white/55 mt-0.5">EVM</div>
-          </button>
-          <button class="walletOpt btn btn-ghost text-left" data-wallet="WalletConnect">
-            <div class="font-semibold">WalletConnect</div>
-            <div class="text-xs text-white/55 mt-0.5">Mobile / QR</div>
-          </button>
-          <button class="walletOpt btn btn-ghost text-left" data-wallet="Trust Wallet">
-            <div class="font-semibold">Trust Wallet</div>
-            <div class="text-xs text-white/55 mt-0.5">Mobile</div>
-          </button>
-        </div>
-
-        <div class="mt-4 flex flex-col sm:flex-row gap-3">
-          <button id="btnCreate" class="btn btn-primary w-full">Connect (demo)</button>
-          <a href="app.html" class="btn btn-ghost w-full text-center">Go to App</a>
-        </div>
-
-        <p class="mt-4 text-xs text-white/55">
-          No guarantees. No financial advice. Utility points only.
-        </p>
-      </div>
-    </div>
+</style></head><body><div class="screen"><div class="header">
+  <div>
+    <div class="title">MARKET IQ</div>
+    <div style="font-size:12px;color:var(--muted)">UP / DOWN → status → identity</div>
   </div>
-
-  <!-- Toast -->
-  <div class="toast" id="toast">
-    <div>
-      <div class="text-sm font-semibold" id="toastTitle">Saved</div>
-      <div class="text-xs text-white/65 mt-0.5" id="toastText">Done.</div>
-    </div>
+  <button class="button" onclick="pitch()">Pitch</button>
+</div><div class="card">
+  <div style="font-size:28px;font-weight:800">BTC / USD</div>
+  <div style="font-size:38px;font-weight:900">$98 500</div>  <div class="progress">
+    <div id="crowdBar" class="progressInner"></div>
+  </div>  <div class="statRow">
+    <div class="stat">Crowd: <span id="crowd">65</span>% UP</div>
+    <div class="stat">Rank: Top <span id="rank">22</span>%</div>
   </div>
+</div><div class="card">
+  <div style="font-size:18px;font-weight:700;margin-bottom:10px">Make prediction</div>  <div class="choiceRow">
+    <div class="choice up" onclick="pick('UP')">↑ UP</div>
+    <div class="choice down" onclick="pick('DOWN')">↓ DOWN</div>
+  </div>
+</div><div class="card">
+  <div style="font-size:18px;font-weight:700">Identity Progress</div>  <div class="progress">
+    <div id="identityBar" class="progressInner" style="width:72%"></div>
+  </div>  <div style="color:var(--muted);font-size:14px">
+    You are evolving into Rebel Mind
+  </div>
+</div></div><div class="bottomNav">
+  <div class="navItem active">Play</div>
+  <div class="navItem">Recap</div>
+  <div class="navItem">Leagues</div>
+  <div class="navItem">You</div>
+</div><div id="toast" class="toast">Prediction locked</div><script>
 
-  <script>
-    const qs = (s, el=document) => el.querySelector(s);
-    const qsa = (s, el=document) => [...el.querySelectorAll(s)];
+function pick(dir){
+  showToast("You picked " + dir);
+}
 
-    const toastEl = qs('#toast');
-    function toast(title, text){
-      qs('#toastTitle').textContent = title;
-      qs('#toastText').textContent = text;
-      toastEl.style.display = 'block';
-      setTimeout(() => toastEl.style.display = 'none', 2600);
-    }
+function showToast(t){
+  const el=document.getElementById("toast");
+  el.innerText=t;
+  el.classList.add("show");
+  setTimeout(()=>el.classList.remove("show"),2000);
+}
 
-    qs('#year').textContent = new Date().getFullYear();
+function pitch(){
+  showToast("Pitch walkthrough starting");
+}
 
-    const overlay = qs('#overlay');
-    const openModal = () => overlay.classList.remove('hidden');
-    const closeModal = () => overlay.classList.add('hidden');
+// LIVE CROWD SIMULATION
+setInterval(()=>{
+  let crowd=Math.floor(55+Math.random()*20);
+  document.getElementById("crowd").innerText=crowd;
+  document.getElementById("crowdBar").style.width=crowd+"%";
+},4000);
 
-    qs('#btnConnect').addEventListener('click', openModal);
-    qs('#btnClose').addEventListener('click', closeModal);
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay || e.target === overlay.firstElementChild) closeModal();
-    });
-
-    function ensureWallet(){
-      const w = localStorage.getItem('miq_wallet');
-      if (w) return w;
-      const addr = "0x" + Math.random().toString(16).slice(2, 10).toUpperCase() + Math.random().toString(16).slice(2, 10).toUpperCase();
-      localStorage.setItem('miq_wallet', addr);
-      return addr;
-    }
-
-    qsa('.walletOpt').forEach(b => b.addEventListener('click', () => toast('Selected', b.dataset.wallet)));
-
-    qs('#btnCreate').addEventListener('click', () => {
-      const addr = ensureWallet();
-      toast('Wallet connected', addr);
-      setTimeout(() => window.location.href = 'app.html', 450);
-    });
-
-    qs('#btnSupport').addEventListener('click', () => {
-      toast('Demo only', 'Support checkout is locked on this build.');
-    });
-    qs('#btnLearn').addEventListener('click', () => {
-      toast('Info', 'This build focuses on product UX and onboarding.');
-    });
-  </script>
-</body>
-              </html>
+</script></body>
+</html>
