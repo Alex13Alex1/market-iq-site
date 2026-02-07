@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 <title>Market IQ App</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
@@ -10,137 +11,109 @@
 
 <style>
 body{
-font-family: Inter, system-ui;
+font-family: Inter;
 background:#070A12;
 color:white;
+}
+.card{
+background: rgba(255,255,255,0.03);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:16px;
+}
+.sidebar{
+background:#05070C;
+border-right:1px solid rgba(255,255,255,0.08);
 }
 </style>
 </head>
 
-<body>
+<body class="flex">
 
-<header class="border-b border-white/10">
-<div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+<!-- SIDEBAR -->
+<div class="sidebar w-64 min-h-screen p-6 hidden md:block">
 
-<div class="font-semibold">Market IQ App</div>
+<div class="text-xl font-semibold mb-10">Market IQ</div>
+
+<nav class="space-y-5 text-white/60">
+
+<a href="app.html" class="block hover:text-white">Dashboard</a>
+<a href="game.html" class="block hover:text-white">Game</a>
+<div class="hover:text-white cursor-pointer">Marketplace</div>
+<div class="hover:text-white cursor-pointer">Creators</div>
+
+</nav>
+
+</div>
+
+<!-- MAIN -->
+<div class="flex-1 p-8">
+
+<div class="flex justify-between items-center">
+
+<h1 class="text-3xl font-semibold">Dashboard</h1>
 
 <div class="flex gap-4 items-center">
 
-<div id="walletLabel" class="text-sm text-white/60"></div>
+<div id="walletLabel" class="text-white/60 text-sm"></div>
 
-<button id="disconnect"
+<button id="logout"
 class="border border-white/20 px-4 py-2 rounded-lg text-sm">
 Disconnect
 </button>
 
-<a href="index.html" class="text-white/60 text-sm">Site</a>
-
 </div>
 
 </div>
-</header>
-
-<section id="lockedScreen"
-class="max-w-3xl mx-auto px-6 py-20 text-center hidden">
-
-<h1 class="text-4xl font-semibold">
-App Locked
-</h1>
-
-<p class="mt-4 text-white/60">
-Connect wallet from landing page to unlock.
-</p>
-
-<a href="index.html"
-class="inline-block mt-8 bg-white text-black px-8 py-4 rounded-xl font-semibold">
-Go to Landing
-</a>
-
-</section>
-
-<section id="appContent"
-class="max-w-6xl mx-auto px-6 py-14 hidden">
-
-<h1 class="text-4xl font-semibold">
-Dashboard
-</h1>
 
 <div class="grid md:grid-cols-3 gap-6 mt-10">
 
-<div class="border border-white/10 p-8 rounded-xl">
-<div class="text-white/60">Market IQ</div>
+<div class="card p-6">
+<div class="text-white/50 text-sm">Market IQ</div>
 <div class="text-3xl font-semibold mt-2">742</div>
 </div>
 
-<div class="border border-white/10 p-8 rounded-xl">
-<div class="text-white/60">League</div>
+<div class="card p-6">
+<div class="text-white/50 text-sm">League</div>
 <div class="text-3xl font-semibold mt-2">Gold</div>
 </div>
 
-<div class="border border-white/10 p-8 rounded-xl">
-<div class="text-white/60">Points</div>
+<div class="card p-6">
+<div class="text-white/50 text-sm">Points</div>
 <div class="text-3xl font-semibold mt-2">1240</div>
 </div>
 
 </div>
 
-<div class="mt-12 border border-white/10 p-10 rounded-xl">
+<div class="card p-8 mt-10">
 
-<div class="text-2xl font-semibold">
-Today Prediction
-</div>
+<div class="text-xl font-semibold">Daily Game</div>
 
-<p class="text-white/60 mt-3">
-Will BTC close above daily open?
+<p class="text-white/60 mt-2">
+Play prediction challenge and earn points.
 </p>
 
-<div class="flex gap-6 mt-8">
-
-<button class="bg-white text-black px-8 py-4 rounded-xl font-semibold">
-UP
-</button>
-
-<button class="border border-white/20 px-8 py-4 rounded-xl">
-DOWN
-</button>
+<a href="game.html"
+class="inline-block mt-6 bg-white text-black px-6 py-3 rounded-xl font-semibold">
+Play Game
+</a>
 
 </div>
 
 </div>
-
-<div class="mt-12 border border-white/10 p-10 rounded-xl">
-
-<div class="text-2xl font-semibold">
-Data Marketplace
-</div>
-
-<p class="text-white/60 mt-3">
-Unlocked for connected wallets.
-</p>
-
-</div>
-
-</section>
 
 <script>
 
 let wallet = localStorage.getItem("wallet");
 
-if(wallet){
-
-document.getElementById("walletLabel").innerText = wallet;
-document.getElementById("appContent").classList.remove("hidden");
-
-}else{
-
-document.getElementById("lockedScreen").classList.remove("hidden");
-
+if(!wallet){
+window.location.href="index.html";
 }
 
-// Disconnect
-document.getElementById("disconnect").onclick = () => {
+document.getElementById("walletLabel").innerText = wallet;
+
+document.getElementById("logout").onclick = ()=>{
 localStorage.removeItem("wallet");
-location.reload();
+window.location.href="index.html";
 }
 
 </script>
