@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Market IQ App</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
@@ -22,18 +22,44 @@ color:white;
 <header class="border-b border-white/10">
 <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
-<div class="font-semibold">
-Market IQ App
-</div>
+<div class="font-semibold">Market IQ App</div>
 
-<a href="index.html" class="text-white/60 text-sm">
-Back to Site
-</a>
+<div class="flex gap-4 items-center">
+
+<div id="walletLabel" class="text-sm text-white/60"></div>
+
+<button id="disconnect"
+class="border border-white/20 px-4 py-2 rounded-lg text-sm">
+Disconnect
+</button>
+
+<a href="index.html" class="text-white/60 text-sm">Site</a>
+
+</div>
 
 </div>
 </header>
 
-<section class="max-w-6xl mx-auto px-6 py-14">
+<section id="lockedScreen"
+class="max-w-3xl mx-auto px-6 py-20 text-center hidden">
+
+<h1 class="text-4xl font-semibold">
+App Locked
+</h1>
+
+<p class="mt-4 text-white/60">
+Connect wallet from landing page to unlock.
+</p>
+
+<a href="index.html"
+class="inline-block mt-8 bg-white text-black px-8 py-4 rounded-xl font-semibold">
+Go to Landing
+</a>
+
+</section>
+
+<section id="appContent"
+class="max-w-6xl mx-auto px-6 py-14 hidden">
 
 <h1 class="text-4xl font-semibold">
 Dashboard
@@ -85,16 +111,39 @@ DOWN
 <div class="mt-12 border border-white/10 p-10 rounded-xl">
 
 <div class="text-2xl font-semibold">
-Marketplace
+Data Marketplace
 </div>
 
 <p class="text-white/60 mt-3">
-Unlock after wallet onboarding.
+Unlocked for connected wallets.
 </p>
 
 </div>
 
 </section>
+
+<script>
+
+let wallet = localStorage.getItem("wallet");
+
+if(wallet){
+
+document.getElementById("walletLabel").innerText = wallet;
+document.getElementById("appContent").classList.remove("hidden");
+
+}else{
+
+document.getElementById("lockedScreen").classList.remove("hidden");
+
+}
+
+// Disconnect
+document.getElementById("disconnect").onclick = () => {
+localStorage.removeItem("wallet");
+location.reload();
+}
+
+</script>
 
 </body>
 </html>
